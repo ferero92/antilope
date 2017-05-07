@@ -1,0 +1,3 @@
+function loadStaff() {
+  alert('hola');
+}

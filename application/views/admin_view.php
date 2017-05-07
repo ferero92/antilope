@@ -1,12 +1,24 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-</head>
-<body>
-
-</body>
-</html>
+  <section class="container">
+    <table id="table_staff" class="table table-condensed">
+      <thead>
+        <tr>
+          <th>
+            Nombre
+          </th>
+          <th>
+            Apellido1
+          </th>
+          <th>
+            Apellido2
+          </th>
+          <th>
+            cod_usuario
+          </th>
+          <th>
+            tipo
+          </th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </section>

@@ -1,5 +1,5 @@
   <section class="container">
-    <form action="Main/login" class="form-horizontal" method="post">
+    <form action="<?php echo base_url('Main/login') ?>" class="form-horizontal" method="post">
       <div class="form-group">
         <label for="user" class="control-label col-sm-2">
           Código Usuario:
@@ -24,5 +24,7 @@
         </div>
       </div>
     </form>
-    <span><?php echo $this->session->flashdata('login_error') ?></span>
+    <span>
+      <?php echo $this->session->flashdata('login_error') ?>
+    </span>
   </section>
