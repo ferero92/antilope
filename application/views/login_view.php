@@ -25,6 +25,6 @@
       </div>
     </form>
     <span>
-      <?php echo $this->session->flashdata('login_error') ?>
+      <?php echo $this->session->flashdata('login_error'); ?>
     </span>
   </section>

@@ -27,13 +27,13 @@ class Main extends CI_Controller{
   {
     $view = null;
     $type = $this->Login_model->check_user($this->input->post('cod_user'), $this->input->post('password'));
-    if($type == null)
+    if(!isset($type))
     {
       $this->session->set_flashdata('login_error', 'Usuario o contraseña incorrectos');
     }
     elseif($type == 6)
     {
-      $view = 'admin_view';
+      redirect('Admin');
     }
     else
     {

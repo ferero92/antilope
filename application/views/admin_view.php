@@ -19,6 +19,8 @@
           </th>
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody>
+        <?php echo $this->session->flashdata('tableUsers'); ?>
+      </tbody>
     </table>
   </section>
