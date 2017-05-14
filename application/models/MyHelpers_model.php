@@ -27,4 +27,12 @@ class MyHelpers_model extends CI_Model{
     return $options;
   }
 
+  public function lViews($view)
+  {
+    $this->load->view('head_view');
+    $this->load->view('header_view');
+    $this->load->view($view);
+    $this->load->view('footer_view');
+  }
+
 }

@@ -17,10 +17,7 @@ class Main extends CI_Controller{
     {
       $view = 'login_view';
     }
-    $this->load->view('head_view');
-    $this->load->view('header_view');
-    $this->load->view($view);
-    $this->load->view('footer_view');
+    $this->help->lViews($view);
   }
 
   public function login()
