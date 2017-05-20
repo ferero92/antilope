@@ -16,7 +16,7 @@ class Login_model extends CI_Model{
       'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM)
     ];
 
-    $this->db->select('tipo');
+    $this->db->select('tipo, id');
     $this->db->from('Personal_Sanitario');
     $this->db->where('cod_usuario', $cod_user);
     $this->db->where('password', $password);
@@ -27,7 +27,8 @@ class Login_model extends CI_Model{
 
     if(isset($row))
     {
-      return $row->tipo;
+      // return $row->tipo;
+      return $row;
     }
   }
 

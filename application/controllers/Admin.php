@@ -12,20 +12,27 @@ class Admin extends CI_Controller{
 
   function index()
   {
-    // $tableUsers = $this->Admin_model->tableUsers();
-    // $this->session->set_flashdata('tableUsers', $tableUsers);
-    $this->help->lViews('admin_view');
+    if($this->session->userdata('user_type') != 6)
+      redirect('Main');
+    $panel = $this->session->flashdata('panel');
+    if(!isset($panel))
+    {
+      $panel = 'admin_view';
+    }
+    $this->help->lViews($panel);
   }
 
   public function panel()
   {
     $submit = $this->input->post('submit');
-    $this->session->set_flashdata('type', $this->input->post('type'));
-    $string = 'Admin/';
+    $action_user_type = $this->input->post('action_user_type');
+    $this->session->set_flashdata('action_user_type', $action_user_type);
+    $string = 'admin/';
     switch ($submit)
     {
       case '1':
         $string .= 'insert';
+        $onloadfunction = "jsInsert('". $action_user_type ."')";
         break;
       case '2':
         $string .= 'modify';
@@ -37,7 +44,12 @@ class Admin extends CI_Controller{
         $string .= 'delete';
         break;
     }
-    redirect($string);
+    $array = array(
+      'panel' => $string . '_view',
+      'onloadfunction' => $onloadfunction
+    );
+    $this->session->set_flashdata($array);
+    redirect('Admin');
   }
 
   public function insert($data)
@@ -46,7 +58,10 @@ class Admin extends CI_Controller{
     {
 
     }
-    $this->help->lViews('admin/insert_view');
+    else
+    {
+      $this->help->lViews('admin/insert_view');
+    }
   }
 
 }

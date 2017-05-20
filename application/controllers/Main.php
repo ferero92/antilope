@@ -23,12 +23,17 @@ class Main extends CI_Controller{
   public function login()
   {
     $view = null;
-    $type = $this->Login_model->check_user($this->input->post('cod_user'), $this->input->post('password'));
-    if(!isset($type))
+    $user = $this->Login_model->check_user($this->input->post('cod_user'), $this->input->post('password'));
+    $user_data = array(
+      'user_id' => $user->id,
+      'user_type' => $user->tipo
+    );
+    $this->session->set_userdata($user_data);
+    if(!isset($user))
     {
       $this->session->set_flashdata('login_error', 'Usuario o contraseña incorrectos');
     }
-    elseif($type == 6)
+    elseif($user->tipo == 6)
     {
       redirect('Admin');
     }
