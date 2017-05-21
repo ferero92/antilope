@@ -52,16 +52,23 @@ class Admin extends CI_Controller{
     redirect('Admin');
   }
 
-  public function insert($data)
+  public function insert($action)
   {
-    if(isset($data))
+    $data_insert = $this->input->post();
+    $table = '';
+    $insert = true;
+    if($action == 1)
     {
-
+      $data_insert['password'] = $this->help->generatePassword('123');
+      $table = 'Personal_Sanitario';
     }
+    else if($action == 2)
+      $table = 'Pacientes';
     else
-    {
-      $this->help->lViews('admin/insert_view');
-    }
+      $insert = false;
+    if($insert)
+      $this->db->insert($table, $data_insert);
+    redirect('Admin');
   }
 
 }
