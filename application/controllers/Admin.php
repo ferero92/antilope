@@ -16,9 +16,7 @@ class Admin extends CI_Controller{
       redirect('Main');
     $panel = $this->session->flashdata('panel');
     if(!isset($panel))
-    {
       $panel = 'admin_view';
-    }
     $this->help->lViews($panel);
   }
 
@@ -26,19 +24,20 @@ class Admin extends CI_Controller{
   {
     $submit = $this->input->post('submit');
     $action_user_type = $this->input->post('action_user_type');
-    $this->session->set_flashdata('action_user_type', $action_user_type);
     $string = 'admin/';
     switch ($submit)
     {
       case '1':
         $string .= 'insert';
-        $onloadfunction = "jsInsert('". $action_user_type ."')";
+        $onloadfunction = 'jsInsert("'.$action_user_type.'")';
+        // $onloadfunction = "jsInsert('". $action_user_type ."')";
         break;
       case '2':
         $string .= 'modify';
         break;
       case '3':
         $string .= 'password';
+        $onloadfunction = 'jsPasswordChange()';
         break;
       case '4':
         $string .= 'delete';
@@ -46,7 +45,8 @@ class Admin extends CI_Controller{
     }
     $array = array(
       'panel' => $string . '_view',
-      'onloadfunction' => $onloadfunction
+      'onloadfunction' => $onloadfunction,
+      'action_user_type' => $action_user_type
     );
     $this->session->set_flashdata($array);
     redirect('Admin');
@@ -69,6 +69,11 @@ class Admin extends CI_Controller{
     if($insert)
       $this->db->insert($table, $data_insert);
     redirect('Admin');
+  }
+
+  public function passwordChange()
+  {
+
   }
 
 }
