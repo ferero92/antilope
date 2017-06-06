@@ -5,11 +5,12 @@ jQuery.fn.autocomplete = function(array) {
     var shown = false;
     elem.parent().append(string);
     appendDiv = elem.parent().find('#autocompleteAppendDiv');
-    elem.keypress(function(event) {
-      if(elem.val().length > 0) {
-        array.each(function(index, el) {
-          if(el.substr(0, elem.val()).toUpperCase() === elem.val().toUpperCase()) {
-            appendDiv.append('<p class="autocompleteOption">'+elem+'</p>');
+    elem.keyup(function(event) {
+      if(elem.val().length > 1) {
+        $.each(array, function(index, el) {
+          // alert(el.substr(0, elem.val().length).toUpperCase()+' valor input => '+elem.val().toUpperCase());
+          if(el.substr(0, elem.val().length).toUpperCase() == elem.val().toUpperCase()) {
+            appendDiv.append('<p class="autocompleteOption">'+el+'</p>');
             shown = true;
           }
         });

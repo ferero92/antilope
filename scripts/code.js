@@ -1,5 +1,5 @@
 function jsPasswordChange(array) {
-  $('#autocomplete').autocomplete(array);
+  $('#autocomplete').autocomplete(["hola", "holaa", "holla"]);
 }
 
 function jsInsert(action_user_type) {
