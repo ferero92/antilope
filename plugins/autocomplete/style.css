@@ -4,3 +4,8 @@
   height: 100px;
   display: none;
 }
+
+#autocompleteAppendDiv .autocompleteOption :hover {
+  background-color: cyan;
+  font-weight: bold;
+}
