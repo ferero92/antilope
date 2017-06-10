@@ -26,7 +26,8 @@ class Main extends CI_Controller{
     $user = $this->Login_model->check_user($this->input->post('cod_user'), $this->input->post('password'));
     $user_data = array(
       'user_id' => $user->id,
-      'user_type' => $user->tipo
+      'user_type' => $user->tipo,
+      'user_floor' => $user->planta
     );
     $this->session->set_userdata($user_data);
     if(!isset($user))
@@ -39,10 +40,22 @@ class Main extends CI_Controller{
     }
     else
     {
-      $view = 'welcome_message';
+      redirect('Panel');
     }
     $this->session->set_flashdata('view', $view);
     redirect('Main');
+  }
+
+  public function logout()
+  {
+    $this->session->sess_destroy();
+    redirect('Main');
+  }
+
+  public function prueba()
+  {
+    echo 'hola';
+    echo $this->session->userdata('user_floor');
   }
 
 }

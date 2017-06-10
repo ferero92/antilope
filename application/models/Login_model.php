@@ -11,23 +11,11 @@ class Login_model extends CI_Model{
 
   public function check_user($email, $password)
   {
-    $options = [
-      'cost' => 12,
-      'salt' => mcrypt_create_iv(22, MCRYPT_DEV_URANDOM)
-    ];
-
-    $this->db->select('tipo, id');
-    $this->db->from('Personal_Sanitario');
-    $this->db->where('email', $email);
-    $this->db->where('password', $password);
-    //$this->db->where('password', password_hash($password, PASSWORD_BCRIPT, $options));
-
-    $query = $this->db->get();
+    $query = $this->db->get_where('Personal_Sanitario', array('email' => $email));
     $row = $query->row();
 
-    if(isset($row))
+    if(isset($row) && password_verify($password, $row->hash))
     {
-      // return $row->tipo;
       return $row;
     }
   }

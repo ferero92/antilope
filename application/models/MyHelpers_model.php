@@ -71,12 +71,47 @@ class MyHelpers_model extends CI_Model{
     return $string;
   }
 
-  public function generatePassword($string)
+  public function generateHash($string)
   {
-    $options = [
-      'cost' => 12,
-    ];
-    return password_hash($string, PASSWORD_DEFAULT, $options);
+    return password_hash($string, PASSWORD_DEFAULT);
+  }
+
+  public function floor_is()
+  {
+    $id =$this->session->userdata('user_id');
+
+    $query = $this->db->get_where('Personal_Sanitario', array('id' => $id));
+    $row = $query->row();
+
+    return $row->planta;
+  }
+
+  public function floors()
+  {
+    $query = $this->db->get('Plantas');
+    $string = '';
+
+    foreach ($query->result() as $row)
+    {
+      $string .=  '<div class="col-md-3 col-xs-6">'.
+                    '<button class="btn btn-lg" type="submit" name="floor" value="'.$row->id.'">'.
+                      $row->descripcion.
+                    '</button>'.
+                  '</div>';
+    }
+    return $string;
+  }
+
+  public function rooms_in_floor()
+  {
+    $query = $this->db->get_where('Habitaciones', array('planta' => $this->session->userdata('floor')));
+    $string = '';
+
+    foreach ($query->result() as $row)
+    {
+      $string .= '<option value="'.$row->id.'">'.$row->id.'</option>';
+    }
+    return $this->session->userdata('floor');
   }
 
 }

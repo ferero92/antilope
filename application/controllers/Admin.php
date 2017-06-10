@@ -29,15 +29,14 @@ class Admin extends CI_Controller{
     {
       case '1':
         $string .= 'insert';
-        $onloadfunction = 'jsInsert("'.$action_user_type.'")';
-        // $onloadfunction = "jsInsert('". $action_user_type ."')";
+        $onloadfunction = 'jsInsert('.$action_user_type.')';
         break;
       case '2':
         $string .= 'modify';
         break;
       case '3':
         $string .= 'password';
-        $onloadfunction = 'jsPasswordChange()';
+        $onloadfunction = 'jsChangePassword()';
         break;
       case '4':
         $string .= 'delete';
@@ -54,12 +53,12 @@ class Admin extends CI_Controller{
 
   public function insert($action)
   {
-    $data_insert = $this->input->post();
+    $data = $this->input->post();
     $table = '';
     $insert = true;
     if($action == 1)
     {
-      $data_insert['password'] = $this->help->generatePassword('123');
+      $data['hash'] = $this->help->generateHash('123');
       $table = 'Personal_Sanitario';
     }
     else if($action == 2)
@@ -67,13 +66,20 @@ class Admin extends CI_Controller{
     else
       $insert = false;
     if($insert)
-      $this->db->insert($table, $data_insert);
+      $this->db->insert($table, $data);
     redirect('Admin');
   }
 
-  public function passwordChange()
+  public function changePassword()
   {
-
+    $password = $this->input->post('password');
+    $hash = $this->help->generateHash($password);
+    $data = array(
+      'hash' => $hash
+    );
+    $this->db->set($data);
+    $this->db->where('id', 1);
+    $this->db->update('Personal_Sanitario');
   }
 
 }
