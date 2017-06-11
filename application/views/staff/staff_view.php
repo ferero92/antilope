@@ -7,6 +7,9 @@
           <div class="col-md-3 col-xs-6">
             <button type="submit" name="submit" value="2" class="btn btn-lg">Mostrar</button>
           </div>
+          <div class="col-md-3 col-xs-6">
+            <button type="submit" name="submit" value="3" class="btn btn-lg">Medicación</button>
+          </div>
         </form>
       </div>
     </section>

@@ -2,6 +2,10 @@ function jsChangePassword(array) {
   $('#autocomplete').autocomplete(["hola", "holaa", "holla"]);
 }
 
+function jsModalRecord() {
+  $('.modal-record').medical_record();
+}
+
 function jsInsert(action_user_type) {
   switch (action_user_type) {
     case 1:
@@ -34,10 +38,22 @@ function jsComboBeds(url) {
   });
 }
 
-function jsPatient(url) {
+function jsPatient(url, patient) {
   $room = $('select[name="habitacion"]').val();
   $bed = $('select[name="numero_cama"]').val();
   $.get(url + '/' + $room + '/' + $bed, function(response) {
     $('#patient').html(response);
-  })
+    $('.modal-record').medical_record(patient + '/' + $room + '/' + $bed);
+  });
+}
+
+function jsConstants(url, patient, constants) {
+  $room = $('select[name="habitacion"]').val();
+  $bed = $('select[name="numero_cama"]').val();
+
+  jsPatient(url, patient);
+
+  $.get(constants + '/' + $room + '/' + $bed, function(response) {
+    $('#showConstants tbody').html(response);
+  });
 }

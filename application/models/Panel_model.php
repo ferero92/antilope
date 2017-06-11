@@ -41,9 +41,40 @@ class Panel_model extends CI_Model{
      $query = $this->db->get_where('Pacientes', $parameters);
 
      $patient = $query->row();
-     $this->session->set_flashdata('patient', $patient);
+     $this->session->set_flashdata('patient', $patient->id);
 
      return $patient->nombre .' '. $patient->apellido1 .' '. $patient->apellido2;
+  }
+
+  public function insert_constants($data)
+  {
+    $data['fecha'] = date("Y-m-d");
+    $data['hora'] = date("h:i:s");
+    $data['paciente'] = $this->session->flashdata('patient');
+    $data['personal'] = $this->session->userdata('user_id');
+
+    unset($data['0']);
+
+    return $this->db->insert('Constantes_Vitales', $data);
+  }
+
+  public function constants_of($room, $bed)
+  {
+    $query = $this->db->query('SELECT * FROM Constantes_Vitales c, Pacientes p WHERE c.paciente = p.id AND p.habitacion = 301 AND p.numero_cama = 1 ORDER BY c.fecha, c.hora DESC');
+    $string = '';
+    foreach ($query->result() as $row) {
+      $string .=  '<tr>'.
+                    '<td>'.$row->pulsaciones.'</td>'.
+                    '<td>'.$row->tension_diastolica.'</td>'.
+                    '<td>'.$row->tension_sistolica.'</td>'.
+                    '<td>'.$row->saturacion.'</td>'.
+                    '<td>'.$row->temperatura.'</td>'.
+                    '<td>'.$row->fecha.'</td>'.
+                    '<td>'.$row->hora.'</td>'.
+                    '<td>'.$row->observaciones.'</td>'.
+                  '</tr>';
+    }
+    return $string;
   }
 
 }

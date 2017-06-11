@@ -31,29 +31,35 @@ class Panel extends CI_Controller{
         $this->session->set_flashdata('onloadfunction', "jsStaffFloor('".base_url('Panel/rooms')."')");
         break;
       case '2':
-
+        $view = 'staff/constants_view';
+        $this->session->set_flashdata('onloadfunction', "jsStaffFloor('".base_url('Panel/rooms')."')");
         break;
-      default:
-
+      case '3':
+        $view = 'staff/medication_view';
+        $this->session->set_flashdata('onloadfunction', "js");
         break;
     }
     $this->session->set_flashdata('view', $view);
     redirect('Panel');
   }
 
-  public function rooms($floor)
+  public function insert()
   {
-    echo $this->Panel_model->rooms_in_floor($floor);
+    $this->Panel_model->insert_constants($this->input->post());
+    redirect('Panel');
   }
 
-  public function beds($room)
-  {
-    echo $this->Panel_model->beds_in_room($room);
-  }
+  public function rooms($floor){ echo $this->Panel_model->rooms_in_floor($floor); }
 
-  public function patients($room, $bed)
+  public function beds($room){ echo $this->Panel_model->beds_in_room($room); }
+
+  public function patients($room, $bed){ echo $this->Panel_model->patient_in_bed($room, $bed); }
+
+  public function modal($room, $bed){ echo $this->help->medical_record($room, $bed); }
+
+  public function constants($room, $bed)
   {
-    echo $this->Panel_model->patient_in_bed($room, $bed);
+    echo $this->Panel_model->constants_of($room, $bed);
   }
 
 }

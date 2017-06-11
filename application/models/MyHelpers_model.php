@@ -76,42 +76,64 @@ class MyHelpers_model extends CI_Model{
     return password_hash($string, PASSWORD_DEFAULT);
   }
 
-  public function floor_is()
+  public function medical_record($room, $bed)
   {
-    $id =$this->session->userdata('user_id');
-
-    $query = $this->db->get_where('Personal_Sanitario', array('id' => $id));
+    $statement = 'SELECT nombre, apellido1, apellido2, edad, diagnostico, g.descripcion AS genero, d.descripcion AS dieta, m.descripcion AS movilidad, p.ayuda_wc AS wc FROM Pacientes p, Generos g, Dietas d, Movilidad m WHERE p.genero = g.id AND p.dieta = d.id AND p.movilidad = m.id AND p.habitacion = '.$room.' AND p.numero_cama = '.$bed;
+    $query = $this->db->query($statement);
     $row = $query->row();
 
-    return $row->planta;
-  }
+    $wc = 'Sí';
+    if($row->wc == 0) $wc = 'No';
 
-  public function floors()
-  {
-    $query = $this->db->get('Plantas');
-    $string = '';
-
-    foreach ($query->result() as $row)
-    {
-      $string .=  '<div class="col-md-3 col-xs-6">'.
-                    '<button class="btn btn-lg" type="submit" name="floor" value="'.$row->id.'">'.
-                      $row->descripcion.
-                    '</button>'.
-                  '</div>';
-    }
+    $string =   '<div class="row">'.
+                  '<div class="col-xs-6 right">'.
+                    '<p>Edad:</p>'.
+                  '</div>'.
+                  '<div class="col-xs-6">'.
+                    '<p>'.$row->edad.'</p>'.
+                  '</div>'.
+                '</div>'.
+                '<div class="row">'.
+                  '<div class="col-xs-6 right">'.
+                    '<p>Género:</p>'.
+                  '</div>'.
+                  '<div class="col-xs-6">'.
+                    '<p>'.$row->genero.'</p>'.
+                  '</div>'.
+                '</div>'.
+                '<div class="row">'.
+                  '<div class="col-xs-6 right">'.
+                    '<p>Dieta:</p>'.
+                  '</div>'.
+                  '<div class="col-xs-6">'.
+                    '<p>'.$row->dieta.'</p>'.
+                  '</div>'.
+                '</div>'.
+                '<div class="row">'.
+                  '<div class="col-xs-6 right">'.
+                    '<p>Movilidad:</p>'.
+                  '</div>'.
+                  '<div class="col-xs-6">'.
+                    '<p>'.$row->movilidad.'</p>'.
+                  '</div>'.
+                '</div>'.
+                '<div class="row">'.
+                  '<div class="col-xs-6 right">'.
+                    '<p>Ayuda WC:</p>'.
+                  '</div>'.
+                  '<div class="col-xs-6">'.
+                    '<p>'.$wc.'</p>'.
+                  '</div>'.
+                '</div>'.
+                '<div class="row">'.
+                  '<div class="col-xs-6 right">'.
+                    '<p>Diagnóstico:</p>'.
+                  '</div>'.
+                  '<div class="col-xs-6">'.
+                    '<p>'.$row->diagnostico.'</p>'.
+                  '</div>'.
+                '</div>';
     return $string;
-  }
-
-  public function rooms_in_floor()
-  {
-    $query = $this->db->get_where('Habitaciones', array('planta' => $this->session->userdata('floor')));
-    $string = '';
-
-    foreach ($query->result() as $row)
-    {
-      $string .= '<option value="'.$row->id.'">'.$row->id.'</option>';
-    }
-    return $this->session->userdata('floor');
   }
 
 }

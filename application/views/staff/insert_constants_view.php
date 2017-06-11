@@ -14,12 +14,12 @@
           </div>
           <div class="form-group">
             <label for="bed">Número de cama:</label>
-            <select name="numero_cama" class="form-control" onchange="jsPatient('<?php echo base_url("Panel/patients"); ?>')">
+            <select name="numero_cama" class="form-control" onchange="jsPatient('<?php echo base_url("Panel/patients") . "', '" . base_url("Panel/modal"); ?>')">
             </select>
           </div>
         </form>
-        <p>Paciente: <strong id="patient"></strong></p>
-        <form class="form-horizontal" action="" method="post">
+        <span class="modal-record">Paciente: <strong id="patient"></strong></span>
+        <form class="form-horizontal" action="<?php echo base_url('Panel/insert'); ?>" method="post">
           <div class="form-group">
             <label for="pulsaciones" class="control-label col-sm-2">Pulsaciones:</label>
             <div class="col-sm-10">
@@ -41,7 +41,7 @@
           <div class="form-group">
             <label for="saturacion" class="control-label col-sm-2">Saturación:</label>
             <div class="col-sm-10">
-              <input type="number" name="saturación" class="form-control">
+              <input type="number" name="saturacion" class="form-control">
             </div>
           </div>
           <div class="form-group">
@@ -53,7 +53,12 @@
           <div class="form-group">
             <label for="observaciones" class="control-label col-sm-2">Observaciones:</label>
             <div class="col-sm-10">
-              <textarea class="form-control" name="descripcion" rows="5"></textarea>
+              <textarea class="form-control" name="observaciones" rows="5"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button class="btn btn-primary" type="submit">Insertar</button>
             </div>
           </div>
         </form>
