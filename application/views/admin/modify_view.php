@@ -22,7 +22,7 @@
       </div>
       <div class="form-group">
         <label for="bed">Número de cama:</label>
-        <select name="numero_cama" class="form-control" onchange="jsModify('<?php echo base_url("Admin/person"); ?>')">
+        <select name="numero_cama" class="form-control" onchange="jsModify('<?php echo base_url("Admin/person") . "', '" . base_url("Admin/select_bed"); ?>')">
         </select>
       </div>
     </form>
@@ -80,18 +80,8 @@
           </select>
         </div>
       </div>
-      <div class="form-group tipo2">
-        <label for="room" class="control-label col-sm-2">Habitación: </label>
-        <div class="col-sm-10">
-          <input type="number" name="habitacion" class="form-control" required>
-        </div>
-      </div>
-      <div class="form-group tipo2">
-        <label for="bed" class="control-label col-sm-2">Nº de cama: </label>
-        <div class="col-sm-10">
-          <input type="number" name="numero_cama" class="form-control" required>
-        </div>
-      </div>
+      <input type="number" name="habitacion" class="hidden">
+      <input type="number" name="numero_cama" class="hidden">
       <div class="form-group tipo2">
         <label for="diet" class="control-label col-sm-2">Dieta: </label>
         <div class="col-sm-10">
@@ -118,9 +108,14 @@
         </div>
       </div>
       <div class="form-group tipo2">
+        <div class="col-sm-offset-2 col-sm-10">
+          <p class="select-bed">Seleccione habitación <strong></strong></p>
+        </div>
+      </div>
+      <div class="form-group tipo2">
         <label for="diagnosis" class="control-label col-sm-2">Diagnóstico: </label>
         <div class="col-sm-10">
-          <textarea name="diagnostico" rows="5" class="form-control" required></textarea>
+          <textarea name="diagnostico" rows="5" class="form-control ohf" required></textarea>
         </div>
       </div>
       <div class="form-group">

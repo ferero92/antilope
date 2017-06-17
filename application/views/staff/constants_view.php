@@ -36,5 +36,14 @@
         <tbody>
         </tbody>
       </table>
+      <div id="constantChart">
+        <ul class="nav nav-tabs">
+          <li class="active" data-id="1" onclick="jsLoadCharts(this, '<?php echo base_url('Admin/'); ?>')"><a href="#">Pulsaciones</a></li>
+          <li data-id="2" onclick="jsLoadCharts(this, '<?php echo base_url('Admin/'); ?>')"><a href="#">Tensión arterial</a></li>
+          <li data-id="3" onclick="jsLoadCharts(this, '<?php echo base_url('Admin/'); ?>')"><a href="#">Saturación</a></li>
+          <li data-id="4" onclick="jsLoadCharts(this, '<?php echo base_url('Admin/'); ?>')"><a href="#">Temperatura</a></li>
+        </ul>
+        <canvas id="chart"></canvas>
+      </div>
     </div>
   </section>

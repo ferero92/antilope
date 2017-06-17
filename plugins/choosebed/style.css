@@ -1,0 +1,33 @@
+.sab-gly {
+  color: blue;
+  cursor: pointer;
+}
+
+.sab-habitacion {
+  border: 1px solid #000;
+}
+
+.sab-habitacion img {
+  height: 80px;
+  width: 80px;
+}
+
+.sab-img-a {
+  cursor: pointer;
+}
+
+.sab-img-a:hover {
+  background-color: blue;
+}
+
+.sab-img-a-select {
+  border: 1px dashed #000;
+}
+
+.sab-img-o {
+
+}
+
+.sab-planta {
+  border: 1px solid #000;
+}

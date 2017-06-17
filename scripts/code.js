@@ -22,7 +22,7 @@ function jsFillData(array, url) {
   });
 }
 
-function jsInsert(action_user_type) {
+function jsInsert(action_user_type, data) {
   switch (action_user_type) {
     case 1:
       $('.tipo2').remove();
@@ -31,6 +31,10 @@ function jsInsert(action_user_type) {
       $('.tipo1').remove();
       break;
   }
+  $.get(data, function(response) {
+    var ajaxResponse = JSON.parse(response);
+    $('p.select-bed').choosebed(ajaxResponse);
+  });
 }
 
 function jsStaffFloor(url) {
@@ -63,10 +67,15 @@ function jsPatient(url, patient) {
   });
 }
 
-function jsModify(url) {
+function jsModify(url, data) {
   var array = [$('select[name="habitacion"]').val(), $('select[name="numero_cama"]').val()];
 
   jsFillData(array, url);
+
+  $.get(data, function(response) {
+    var ajaxResponse = JSON.parse(response);
+    $('p.select-bed').choosebed(ajaxResponse);
+  });
 }
 
 function jsConstants(url, patient, constants) {
@@ -94,6 +103,32 @@ function jsFloor() {
 
 function jsChangePassword() {
   if($('[name="newpassword"]').val() == $('[name="password"]').val()) $('button').prop('disabled', false);
+}
+
+function jsLoadCharts(li, url) {
+  $('.nav-tabs li').removeClass('active');
+  li.className = 'active';
+
+  var id = li.getAttribute('data-id');
+
+  switch (id) {
+    case '1':
+      url += 'c_pulsaciones';
+      break;
+    case '2':
+      url += 'c_tension';
+      break;
+    case '3':
+      url += 'c_saturacion';
+      break;
+    case '4':
+      url += 'c_temperatura';
+      break;
+  }
+
+  $.get(url, function(response) {
+
+  });
 }
 
 $(document).ready(function() {

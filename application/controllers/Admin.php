@@ -29,7 +29,8 @@ class Admin extends CI_Controller{
     {
       case '1':
         $string .= 'insert';
-        $onloadfunction = 'jsInsert('.$action_user_type.')';
+        $onloadfunction = "jsInsert(".$action_user_type.", '".base_url('Admin/select_bed')."')";
+        // $onloadfunction = 'jsInsert('.$action_user_type.')';
         break;
       case '2':
         $string .= 'modify';
@@ -68,6 +69,8 @@ class Admin extends CI_Controller{
   }
 
   public function match($match){ echo $this->Admin_model->staff_match($match); }
+
+  public function select_bed(){ echo $this->Admin_model->select_a_bed(); }
 
   public function insert($action)
   {
