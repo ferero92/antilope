@@ -53,7 +53,7 @@
           <div class="form-group">
             <label for="observaciones" class="control-label col-sm-2">Observaciones:</label>
             <div class="col-sm-10">
-              <textarea class="form-control" name="observaciones" rows="5"></textarea>
+              <textarea class="form-control ohf" name="observaciones" rows="5"></textarea>
             </div>
           </div>
           <div class="form-group">

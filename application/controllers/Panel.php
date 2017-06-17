@@ -57,9 +57,6 @@ class Panel extends CI_Controller{
 
   public function modal($room, $bed){ echo $this->help->medical_record($room, $bed); }
 
-  public function constants($room, $bed)
-  {
-    echo $this->Panel_model->constants_of($room, $bed);
-  }
+  public function constants($room, $bed){ echo $this->Panel_model->constants_of($room, $bed); }
 
 }

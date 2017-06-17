@@ -5,7 +5,10 @@
   display: none;
 }
 
-#autocompleteAppendDiv .autocompleteOption :hover {
+#autocompleteAppendDiv .autocomplete-option:hover {
   background-color: cyan;
+  cursor: pointer;
   font-weight: bold;
+  position: relative;
+  z-index: 100;
 }

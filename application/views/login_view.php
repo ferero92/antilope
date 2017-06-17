@@ -2,7 +2,7 @@
     <form action="<?php echo base_url('Main/login') ?>" class="form-horizontal" method="post">
       <div class="form-group">
         <label for="user" class="control-label col-sm-2">
-          Código Usuario:
+          Usuario:
         </label>
         <div class="col-sm-10">
           <input type="text" name="cod_user" class="form-control">

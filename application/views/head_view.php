@@ -17,4 +17,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <script src="<?php echo base_url('plugins/autocomplete/code.js'); ?>" charset="utf-8"></script>
   <link rel="stylesheet" href="<?php echo base_url('plugins/medical_record/style.css'); ?>">
   <script src="<?php echo base_url('plugins/medical_record/code.js'); ?>" charset="utf-8"></script>
+  <link rel="stylesheet" href="<?php echo base_url('plugins/onehundredforty/style.css'); ?>">
+  <script src="<?php echo base_url('plugins/onehundredforty/code.js'); ?>" charset="utf-8"></script>
 </head>
