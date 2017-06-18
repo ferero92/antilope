@@ -1,5 +1,5 @@
-<footer>
-  <div class="jumbotron">
+<footer class="hidden-md hidden-sm hidden-xs">
+  <div class="container">
     <p>
       Fernando Rodríguez Reyes - IES La Marisma
     </p>

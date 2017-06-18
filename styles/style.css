@@ -1,11 +1,126 @@
 #chart {
+  height: auto;
+  width: 80%;
+}
+
+#logout {
+  text-align: right;
+}
+
+.my-border {
   border: 1px solid #000;
-  height: 350px;
+}
+
+.my-btn {
+  background-color: rgb(54, 129, 150);
+  color: white;
+}
+
+.my-btn-delete {
+  background-color: rgb(6, 12, 17);
+  color: white;
+}
+
+.my-btn-insert {
+  background-color: rgb(1, 137, 46);
+  color: white;
+}
+
+.my-btn-menu {
+  font-size: 27px;
+  height: 100px;
+  margin-top: 20px;
   width: 100%;
+}
+
+.my-btn-modify {
+  background-color: rgb(191, 52, 77);
+  color: white;
+}
+
+.my-btn-passwd {
+  background-color: rgb(255, 204, 92);
+  color: white;
+}
+
+.my-btn-staff1 {
+  background-color: rgb(26, 168, 180);
+  color: white;
+}
+
+.my-btn-staff2 {
+  background-color: rgb(211, 207, 195);
+  color: white;
+}
+
+.my-form {
+  margin: auto;
+  width: 70%;
+}
+
+.my-form-frb {
+  margin-bottom: 3%;
+  margin-top: 3%;
+}
+
+.my-form-hidden {
+  visibility: hidden;
+}
+
+.my-login {
+  margin: auto;
+  margin-bottom: 8%;
+  margin-top: 50px;
+  width: 70%;
+}
+
+.my-radio {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.my-staff {
+  margin: auto;
+  margin-bottom: 15%;
+  margin-top: 50px;
+  width: 70%;
+}
+
+.nav-tabs li {
+  cursor: pointer;
 }
 
 .right {
   text-align: right;
+}
+
+body {
+  width: 100%;
+}
+
+header {
+  background-color: rgb(54, 129, 150);
+  color: white;
+  margin-bottom: 3%;
+  padding-bottom: 3%;
+  width: 100%;
+}
+
+header a {
+  color: white;
+}
+
+footer {
+  background-color: rgb(54, 129, 150);
+  color: white;
+  margin-top: 3%;
+  padding-bottom: 3%;
+  padding-top: 3%;
+  text-align: center;
+}
+
+section {
+  width: 100%;
 }
 
 textarea {

@@ -96,6 +96,7 @@ class Admin_model extends CI_Model{
       $subquery = $this->db->get_where('Habitaciones', array('planta' => $row->id));
       foreach ($subquery->result() as $room) {
         $string .= '<div data-id="'.$room->id.'" class="sab-habitacion col-xs-6">'.
+                    '<div class="my-border">'.
                       '<p>Nº '.$room->id.'</p>';
 
         $statement = 'SELECT h.id AS id, COUNT(p.habitacion) AS ocupadas, h.numero_camas AS camas FROM Habitaciones h, Pacientes p WHERE h.id = p.habitacion AND h.id = '.$room->id.' GROUP BY p.habitacion';
@@ -120,7 +121,7 @@ class Admin_model extends CI_Model{
             }
           }
         }
-        $string .= '</div>';
+        $string .= '</div></div>';
       }
       $string .= '</div>';
     }

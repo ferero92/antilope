@@ -1,10 +1,14 @@
 .sab-gly {
-  color: blue;
+  color: #069ac5;
   cursor: pointer;
 }
 
 .sab-habitacion {
-  border: 1px solid #000;
+  padding: 1%;
+}
+
+.sab-habitacion * {
+  padding: 1%;
 }
 
 .sab-habitacion img {
@@ -17,7 +21,7 @@
 }
 
 .sab-img-a:hover {
-  background-color: blue;
+  background-color: #069ac5;
 }
 
 .sab-img-a-select {
@@ -25,9 +29,15 @@
 }
 
 .sab-img-o {
-
+  cursor: not-allowed;
 }
 
 .sab-planta {
   border: 1px solid #000;
+  margin: 2%;
+}
+
+.sab-row {
+  margin: auto;
+  width: 80%;
 }

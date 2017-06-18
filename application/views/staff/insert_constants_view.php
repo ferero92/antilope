@@ -1,6 +1,6 @@
     <section>
       <div class="container">
-        <form class="form-inline" method="post">
+        <form class="form-inline my-form-frb" method="post">
           <div class="form-group">
             <label for="floor">Planta:</label>
             <select class="form-control" name="planta" onchange="jsChangeFloor('<?php echo base_url("Panel/rooms"); ?>')">
@@ -8,18 +8,18 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="room">Número de habitación:</label>
+            <label for="room">Habitación:</label>
             <select name="habitacion" class="form-control" onchange="jsComboBeds('<?php echo base_url("Panel/beds"); ?>')">
             </select>
           </div>
           <div class="form-group">
-            <label for="bed">Número de cama:</label>
+            <label for="bed">Cama:</label>
             <select name="numero_cama" class="form-control" onchange="jsPatient('<?php echo base_url("Panel/patients") . "', '" . base_url("Panel/modal"); ?>')">
             </select>
           </div>
         </form>
         <span class="modal-record">Paciente: <strong id="patient"></strong></span>
-        <form class="form-horizontal" action="<?php echo base_url('Panel/insert'); ?>" method="post">
+        <form class="form-horizontal my-form-hidden" action="<?php echo base_url('Panel/insert'); ?>" method="post">
           <div class="form-group">
             <label for="pulsaciones" class="control-label col-sm-2">Pulsaciones:</label>
             <div class="col-sm-10">

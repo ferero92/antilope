@@ -1,6 +1,6 @@
 <section>
   <div class="container">
-    <form class="form-inline" method="post">
+    <form class="form-inline my-form-frb" method="post">
       <div class="form-group">
         <label for="floor">Planta:</label>
         <select class="form-control" name="planta" onchange="jsChangeFloor('<?php echo base_url("Panel/rooms"); ?>')">
@@ -8,18 +8,18 @@
         </select>
       </div>
       <div class="form-group">
-        <label for="room">Número de habitación:</label>
+        <label for="room">Habitación:</label>
         <select name="habitacion" class="form-control" onchange="jsComboBeds('<?php echo base_url("Panel/beds"); ?>')">
         </select>
       </div>
       <div class="form-group">
-        <label for="bed">Número de cama:</label>
+        <label for="bed">Cama:</label>
         <select name="numero_cama" class="form-control" onchange="jsConstants('<?php echo base_url("Panel/patients") . "', '" . base_url("Panel/modal") . "', '" . base_url("Panel/constants"); ?>')">
         </select>
       </div>
     </form>
     <span class="modal-record">Paciente: <strong id="patient"></strong></span>
-    <div id="showConstants">
+    <div id="showConstants" class="my-form-hidden">
       <table class="table table-condensed">
         <thead>
           <tr>
@@ -38,10 +38,10 @@
       </table>
       <div id="constantChart">
         <ul class="nav nav-tabs">
-          <li class="active" data-id="1" onclick="jsLoadCharts(this, '<?php echo base_url('Admin/'); ?>')"><a href="#">Pulsaciones</a></li>
-          <li data-id="2" onclick="jsLoadCharts(this, '<?php echo base_url('Admin/'); ?>')"><a href="#">Tensión arterial</a></li>
-          <li data-id="3" onclick="jsLoadCharts(this, '<?php echo base_url('Admin/'); ?>')"><a href="#">Saturación</a></li>
-          <li data-id="4" onclick="jsLoadCharts(this, '<?php echo base_url('Admin/'); ?>')"><a href="#">Temperatura</a></li>
+          <li data-id="1" onclick="jsLoadCharts(this, '<?php echo base_url('Panel/c_constantes/'); ?>')"><a>Pulsaciones</a></li>
+          <li data-id="2" onclick="jsLoadCharts(this, '<?php echo base_url('Panel/c_constantes/'); ?>')"><a>Tensión arterial</a></li>
+          <li data-id="3" onclick="jsLoadCharts(this, '<?php echo base_url('Panel/c_constantes/'); ?>')"><a>Saturación</a></li>
+          <li data-id="4" onclick="jsLoadCharts(this, '<?php echo base_url('Panel/c_constantes/'); ?>')"><a>Temperatura</a></li>
         </ul>
         <canvas id="chart"></canvas>
       </div>

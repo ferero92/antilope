@@ -25,5 +25,7 @@ function optionAutocomplete(p, fn, url) {
 
   var array = [p.getAttribute('data-id')];
 
+  $('.my-form-hidden').removeClass('my-form-hidden');
+
   fn(array, url);
 }

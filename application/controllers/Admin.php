@@ -30,7 +30,6 @@ class Admin extends CI_Controller{
       case '1':
         $string .= 'insert';
         $onloadfunction = "jsInsert(".$action_user_type.", '".base_url('Admin/select_bed')."')";
-        // $onloadfunction = 'jsInsert('.$action_user_type.')';
         break;
       case '2':
         $string .= 'modify';
@@ -103,6 +102,8 @@ class Admin extends CI_Controller{
     if($action == 1)
     {
       $table = 'Personal_Sanitario';
+
+      if(!isset($data['planta'])) $data['planta'] = 0;
     }
     elseif ($action == 2)
     {

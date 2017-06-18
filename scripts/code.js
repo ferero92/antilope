@@ -61,6 +61,9 @@ function jsComboBeds(url) {
 function jsPatient(url, patient) {
   $room = $('select[name="habitacion"]').val();
   $bed = $('select[name="numero_cama"]').val();
+
+  jsShowForm();
+
   $.get(url + '/' + $room + '/' + $bed, function(response) {
     $('#patient').html(response);
     $('.modal-record').medical_record(patient + '/' + $room + '/' + $bed);
@@ -76,6 +79,8 @@ function jsModify(url, data) {
     var ajaxResponse = JSON.parse(response);
     $('p.select-bed').choosebed(ajaxResponse);
   });
+
+  jsShowForm();
 }
 
 function jsConstants(url, patient, constants) {
@@ -109,26 +114,95 @@ function jsLoadCharts(li, url) {
   $('.nav-tabs li').removeClass('active');
   li.className = 'active';
 
-  var id = li.getAttribute('data-id');
-
-  switch (id) {
-    case '1':
-      url += 'c_pulsaciones';
-      break;
-    case '2':
-      url += 'c_tension';
-      break;
-    case '3':
-      url += 'c_saturacion';
-      break;
-    case '4':
-      url += 'c_temperatura';
-      break;
-  }
+  url += li.getAttribute('data-id');
 
   $.get(url, function(response) {
-
+    var ajaxResponse = JSON.parse(response);
+    $('iframe').remove();
+    $('canvas').remove();
+    $('.nav-tabs').after('<canvas id="chart"></canvas>');
+    var canvas = $('#chart');
+    if(li.getAttribute('data-id') == 2) {
+      var myChart = new Chart(canvas, {
+        type: ajaxResponse['type'],
+        data: {
+          labels: ajaxResponse['labels'],
+          datasets: [
+            {
+              label: ajaxResponse['legend']['dia'],
+              data: ajaxResponse['data']['dia'],
+              backgroundColor: 'rgba(46, 97, 255, 1)'
+            }, {
+              label: ajaxResponse['legend']['sis'],
+              data: ajaxResponse['data']['sis'],
+              backgroundColor: 'rgba(255, 59, 36, 1)'
+            }
+          ]
+        },
+        options: {
+          title: {
+            display: true,
+            text: ajaxResponse['title']
+          },
+          scales: {
+            yAxes: [{
+              ticks: {
+                suggestedMin: ajaxResponse['min'],
+                suggestedMax: ajaxResponse['max']
+              }
+            }]
+          }
+        }
+      });
+    }
+    else {
+      var myChart = new Chart(canvas, {
+        type: ajaxResponse['type'],
+        data: {
+          labels: ajaxResponse['labels'],
+          datasets: [{
+            label: ajaxResponse['legend'],
+            data: ajaxResponse['data'],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255,99,132,1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          title: {
+            display: true,
+            text: ajaxResponse['title']
+          },
+          scales: {
+            yAxes: [{
+              ticks: {
+                suggestedMin: ajaxResponse['min'],
+                suggestedMax: ajaxResponse['max']
+              }
+            }]
+          }
+        }
+      });
+    }
   });
+}
+
+function jsShowForm() {
+  $('.my-form-hidden').removeClass('my-form-hidden');
 }
 
 $(document).ready(function() {

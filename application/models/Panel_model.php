@@ -75,9 +75,41 @@ class Panel_model extends CI_Model{
     return $string;
   }
 
-  public function ($value='')
+  public function chart($type)
   {
-    # code...
+    if($type == 'tension') {
+      $statement = 'SELECT fecha, tension_diastolica AS dia, tension_sistolica AS sis FROM Constantes_Vitales WHERE paciente = ' . $this->session->userdata('patient');
+      $query = $this->db->query($statement);
+
+      $labels = array();
+      $dia = array();
+      $sis = array();
+
+      foreach ($query->result() as $row) {
+        $labels[] = $row->fecha;
+        $dia[] = $row->dia;
+        $sis[] = $row->sis;
+      }
+
+      $data = array(
+        'dia' => $dia,
+        'sis' => $sis
+      );
+    }
+
+    else {
+      $statement = 'SELECT fecha, '.$type.' AS cons FROM Constantes_Vitales WHERE paciente = ' . $this->session->userdata('patient');
+      $query = $this->db->query($statement);
+
+      $labels = array();
+      $data = array();
+
+      foreach ($query->result() as $row) {
+        $labels[] = $row->fecha;
+        $data[] = $row->cons;
+      }
+    }
+    return array('labels' => $labels, 'data' => $data);
   }
 
 }

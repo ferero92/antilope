@@ -49,6 +49,61 @@ class Panel extends CI_Controller{
     redirect('Panel');
   }
 
+  public function c_constantes($type)
+  {
+    switch ($type) {
+      case '1':
+        $cons = 'pulsaciones';
+        $type = 'line';
+        $legend = 'Pulsaciones por minuto';
+        $title = 'Pulsaciones de ';
+        $min = 40;
+        $max = 140;
+        break;
+      case '2':
+        $cons = 'tension';
+        $type = 'bar';
+        $legend = array(
+          'dia' => 'Tensión diastólica',
+          'sis' => 'Tensión sistólica'
+        );
+        $title = 'Tensión arterial de ';
+        $min = 20;
+        $max = 160;
+        break;
+      case '3':
+        $cons = 'saturacion';
+        $type = 'bar';
+        $legend = 'Oxígeno en sangre';
+        $title = 'Saturación de ';
+        $min = 90;
+        $max = 100;
+        break;
+      case '4':
+        $cons = 'temperatura';
+        $type = 'line';
+        $legend = 'Temperatura corporal';
+        $title = 'Temperatura de ';
+        $min = 34;
+        $max = 44;
+        break;
+    }
+
+    $query = $this->db->get_where('Pacientes', array('id' => $this->session->userdata('patient')));
+    $row = $query->row();
+    $title .= $row->nombre . ' ' . $row->apellido1 . ' ' . $row->apellido2;
+
+    $array = $this->Panel_model->chart($cons);
+
+    $array['type'] = $type;
+    $array['legend'] = $legend;
+    $array['title'] = $title;
+    $array['min'] = $min;
+    $array['max'] = $max;
+
+    echo json_encode($array);
+  }
+
   public function rooms($floor){ echo $this->Panel_model->rooms_in_floor($floor); }
 
   public function beds($room){ echo $this->Panel_model->beds_in_room($room); }

@@ -10,7 +10,7 @@ jQuery.fn.choosebed = function(data) {
                     '<div class="modal-content">'+
                       '<div class="modal-header">'+
                         '<button type="button" class="close" data-dismiss="modal">&times;</button>'+
-                        '<div class="row">'+
+                        '<div class="row sab-row">'+
                           '<label class="col-xs-2">Plantas:</label>'+
                           '<select id="modalSelect" class="form-control col-xs-6">'+
                             data['floors']+
@@ -22,7 +22,7 @@ jQuery.fn.choosebed = function(data) {
                       '</div>'+
                       '<div class="modal-footer">'+
                         '<p>Habitación: <strong></strong> Nº Cama: <strong></strong></p>'+
-                        '<button class="btn btn-success" data-dismiss="modal">Seleccionar</button>'
+                        '<button class="btn my-btn-insert" data-dismiss="modal">Seleccionar</button>'
                       '</div>'+
                     '</div>'+
                   '</div>'+
@@ -36,7 +36,7 @@ jQuery.fn.choosebed = function(data) {
     });
 
     $('.sab-habitacion img.sab-img-a').click(function(event) {
-      $('[name="habitacion"]').val($(this).parent().attr('data-id'));
+      $('[name="habitacion"]').val($(this).parent().parent().attr('data-id'));
       $('[name="numero_cama"]').val($(this).index());
 
       $('.sab-img-a').removeClass('sab-img-a-select');
